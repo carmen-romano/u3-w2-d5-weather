@@ -15,7 +15,7 @@ function App() {
           <MyNavbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/:latLon" element={<CityDetails />} />
+            <Route path="/details/:latLon" element={<CityDetails />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <MyFooter />

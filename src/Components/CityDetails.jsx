@@ -24,14 +24,14 @@ const CityDetails = () => {
   const params = useParams();
   console.log(params);
   console.log(typeof params);
-  let coordinate = params.latLon ? params.latLon.split("-") : [];
+  let coordinate = params.latLon ? params.latLon.split("&") : [];
+
   const handleButtonClick = () => {
     setIsVisible(!isVisible);
   };
-
   console.log(coordinate);
-  let lat = parseFloat(coordinate[0]);
-  let lon = parseFloat(coordinate[1]);
+  let lat = coordinate[0];
+  let lon = coordinate[1];
   console.log("LAT:", lat);
   console.log("LON:", lon);
   useEffect(() => {

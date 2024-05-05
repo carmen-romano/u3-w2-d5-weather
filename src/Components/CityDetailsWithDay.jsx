@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { Alert, Col, Container, Placeholder, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import DayWeather from "./DayWeather";
 import Temperature from "./Temperature";
+import DayOfWeek from "./DayOfWeek";
 
 const CityDetailWithDay = () => {
   const [city, setCity] = useState(null);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
-  let coordinate = params.latLon ? params.latLon.split("-") : [];
-  let lat = parseFloat(coordinate[0]);
-  let lon = parseFloat(coordinate[1]);
+  let coordinate = params.latLon ? params.latLon.split("&") : [];
+  let lat = coordinate[0];
+  let lon = coordinate[1];
 
   useEffect(() => {
     if (lat && lon) {
@@ -66,7 +66,7 @@ const CityDetailWithDay = () => {
                 />
                 <p>{day.weather[0].main} </p>
                 <p>
-                  <DayWeather date={day.dt_txt} />
+                  <DayOfWeek date={day.dt_txt} />
                 </p>
                 <p className="temp">
                   <Temperature kelvin={day.main.temp} />

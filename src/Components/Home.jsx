@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Form, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [searchText, setSearchText] = useState("");
-  const navigate = useNavigate();
+  const [weatherCity, setWeatherCity] = useState(null);
 
-  const fetchWeatherData = () => {
+  const fetchWeatherData = searchText => {
     fetch(
       `http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=&appid=85dbaacb0481edb97a1d3f647ce586b4`
     )
@@ -17,9 +17,9 @@ const Home = () => {
         return response.json();
       })
       .then(cityData => {
-        const weatherCity = cityData[0];
-        if (weatherCity) {
-          navigate(`/${weatherCity.lat}-${weatherCity.lon}`);
+        const fetchedWeatherCity = cityData[0];
+        if (fetchedWeatherCity) {
+          setWeatherCity(fetchedWeatherCity);
           console.log("home fetch", cityData);
         } else {
           console.error("Nessuna città trovata");
@@ -31,8 +31,14 @@ const Home = () => {
   };
 
   const handleSearch = e => {
-    e.preventDefault();
-    fetchWeatherData();
+    let searchText = e.target.value;
+
+    if (searchText.includes(" ")) {
+      let searchText1 = searchText.replace(/ /g, "%20");
+      fetchWeatherData(searchText1);
+    }
+    setSearchText(searchText);
+    fetchWeatherData(searchText);
   };
 
   return (
@@ -49,12 +55,18 @@ const Home = () => {
           className="me-2"
           aria-label="Search"
           value={searchText}
-          onChange={e => setSearchText(e.target.value)}
+          onChange={handleSearch}
         />
 
-        <button type="submit" className="btn btn-outline-light">
+        <Link
+          to={
+            weatherCity ? `/details/${weatherCity.lat}&${weatherCity.lon}` : "#"
+          }
+          className="btn btn-outline-light"
+          disabled={!weatherCity}
+        >
           <i className="fas fa-search"></i>
-        </button>
+        </Link>
       </Form>
     </Container>
   );
