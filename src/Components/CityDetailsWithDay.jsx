@@ -6,9 +6,11 @@ import DayOfWeek from "./DayOfWeek";
 
 const CityDetailWithDay = () => {
   const [city, setCity] = useState(null);
+
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
+
   let coordinate = params.latLon ? params.latLon.split("&") : [];
   let lat = coordinate[0];
   let lon = coordinate[1];
@@ -21,7 +23,7 @@ const CityDetailWithDay = () => {
 
   const fetchWeatherDetails = (lat, lon) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=85dbaacb0481edb97a1d3f647ce586b4&cnt=10`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=85dbaacb0481edb97a1d3f647ce586b4&cnt=9`
     )
       .then(response => {
         if (!response.ok) {
@@ -32,7 +34,7 @@ const CityDetailWithDay = () => {
       .then(cityData => {
         setCity(cityData);
         setIsLoading(false);
-        console.log(cityData);
+        console.log("dettagli", cityData);
       })
       .catch(error => {
         console.error("Errore:", error);
@@ -65,9 +67,11 @@ const CityDetailWithDay = () => {
                   alt="icon-weather"
                 />
                 <p>{day.weather[0].main} </p>
+                <hr />
                 <p>
                   <DayOfWeek date={day.dt_txt} />
                 </p>
+                <hr />
                 <p className="temp">
                   <Temperature kelvin={day.main.temp} />
                 </p>

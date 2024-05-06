@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [searchText, setSearchText] = useState("");
   const [weatherCity, setWeatherCity] = useState(null);
+  const [city, setCity] = useState("");
 
   const fetchWeatherData = searchText => {
     fetch(
@@ -20,7 +21,9 @@ const Home = () => {
         const fetchedWeatherCity = cityData[0];
         if (fetchedWeatherCity) {
           setWeatherCity(fetchedWeatherCity);
-          console.log("home fetch", cityData);
+          setCity(cityData[0].name);
+
+          console.log("home fetch", city);
         } else {
           console.error("Nessuna città trovata");
         }
@@ -32,6 +35,7 @@ const Home = () => {
 
   const handleSearch = e => {
     let searchText = e.target.value;
+    e.preventDefault();
 
     if (searchText.includes(" ")) {
       let searchText1 = searchText.replace(/ /g, "%20");
@@ -47,7 +51,7 @@ const Home = () => {
       <h1 className="fw-bold title-page my-4">SkyView Forecast</h1>
       <Form
         className="input-search d-flex align-items-center my-5"
-        onSubmit={handleSearch}
+        onSubmit={e => e.preventDefault()}
       >
         <Form.Control
           type="search"
@@ -60,7 +64,9 @@ const Home = () => {
 
         <Link
           to={
-            weatherCity ? `/details/${weatherCity.lat}&${weatherCity.lon}` : "#"
+            weatherCity
+              ? `/details/${weatherCity.lat}&${weatherCity.lon}&${city}`
+              : "#"
           }
           className="btn btn-outline-light"
           disabled={!weatherCity}

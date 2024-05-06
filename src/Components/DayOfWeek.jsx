@@ -6,7 +6,7 @@ const DayOfWeek = ({ date }) => {
   const time = timeParts[0] + ":" + timeParts[1];
 
   return (
-    <span>
+    <span className="fw-bold">
       {dayName} {time}
     </span>
   );

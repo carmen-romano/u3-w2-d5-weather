@@ -22,65 +22,39 @@ body {
   border-bottom-right-radius: 10px;
 }
 .bgApp {
-  background: rgb(229 253 255 / 51%);
+  background: rgba(248, 254, 255, 0.71);
 }
-.card-details-city-left {
-  border-radius: 15px;
-  background: rgb(175, 249, 255);
-  background: linear-gradient(
-    90deg,
-    rgb(171 249 255 / 62%) 0%,
-    rgb(231 249 255 / 52%) 42%,
-    rgb(163 227 255 / 62%) 100%
-  );
+.card-details-city {
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.489);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  border: 1px solid #fefefe4f;
+  margin: 10px;
+}
 
-  border: 1px solid #fefefe4f;
-}
-.card-details-city-right {
-  border-radius: 15px;
-  background: rgb(175, 249, 255);
-  background: linear-gradient(
-    90deg,
-    rgb(200 233 255 / 86%) 0%,
-    rgb(136 225 255 / 52%) 42%,
-    rgb(0 177 255 / 62%) 100%
-  );
-  border: 1px solid #fefefe4f;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
 .png-weather {
   width: 60px;
 }
-.btn-city-details {
-  background: rgb(175, 249, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(175, 249, 255, 0.8015581232492998) 0%,
-    rgba(190, 239, 255, 0.8799894957983193) 42%,
-    rgba(63, 196, 255, 0.7483368347338936) 100%
-  );
-  border: 1px solid #fefefe4f;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
+
 .temp {
   font-size: 0.8em;
   font-weight: 600;
 }
 .btn-city {
-  background: rgba(242, 254, 255, 0.448);
+  background: rgb(255 255 255 / 71%);
   border: 1px solid #70707069;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   color: rgb(27, 27, 27);
 }
 .btn-city:active {
-  background: rgba(242, 254, 255, 0.448);
+  background: rgb(255 255 255 / 71%);
   border: 1px solid #00000083;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .btn-city:hover {
-  background: rgb(177, 248, 255);
+  background: rgb(255 255 255 / 71%);
   color: rgb(20, 20, 20);
   border: 1px solid #00000083;
 }
@@ -94,5 +68,13 @@ body {
 }
 .citydetails h2 {
   font-weight: 600;
-  font-size: 2.5em;
+  font-size: 2em;
+}
+
+.arrow-back {
+  display: flex;
+  font-size: 2em;
+  color: rgb(32, 32, 32);
+  text-decoration: none;
+  margin-bottom: 4px;
 }
