@@ -9,7 +9,7 @@ const Home = () => {
 
   const fetchWeatherData = searchText => {
     fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=&appid=85dbaacb0481edb97a1d3f647ce586b4`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=&appid=85dbaacb0481edb97a1d3f647ce586b4`
     )
       .then(response => {
         if (!response.ok) {
